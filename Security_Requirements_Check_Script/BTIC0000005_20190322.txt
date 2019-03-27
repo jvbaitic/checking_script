@@ -1,0 +1,18 @@
+﻿Computer Name:BTIC0000005
+Date:03/22/2019 12:41:06
+OS Version:10.0.17134
+Last Update Date:03/20/2019 07:46:21
+AutoUpdate Enabled:True
+Kaspersky:True
+State:enabled and up to date
+Processor:Intel(R) Core(TM) i5-2540M CPU @ 2.60GHz
+Firewall:True
+KeePass Instaled:True
+KeePass State:KeePass anclado a la barra de tareas
+KeyPass Enforced:False
+Office Version:16.0.11328.20158
+Username:jvega
+Administrator Privileges:False
+Guest Account Enabled:False
+Listening Ports: 16992, 7680, 5672, 5357, 4369, 3389, 2107, 2105, 2103, 1801, 1553, 1549, 1547, 1545, 1540, 1539, 1538, 1537, 1536, 623, 445, 135, 62522, 60014, 60012, 60010, 26306, 25672, 16992, 15672, 5672, 5040, 4369, 3389, 2107, 2105, 2103, 1801, 1553, 1551, 1549, 1547, 1545, 1540, 1539, 1538, 1537, 1536, 912, 902, 623, 139, 139, 139, 139, 135,
+Shared Folders:ADMIN$: C:\WINDOWS, Brother BlancoNegro: Brother Blanco/Negro,LocalsplOnly, Brother MFC-J890DW Printer: Brother MFC-J890DW Printer,LocalsplOnly, C$: C:\, CD-APP: C:\, E$: E:\, IPC$: , print$: C:\WINDOWS\system32\spool\drivers, Users: C:\Users,

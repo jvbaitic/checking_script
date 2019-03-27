@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Security Results</title>
+	<style>
+
+	body {
+		background-color: #fcfcfc;
+	}
+		
+		#admin{
+			text-align: left;
+		}
+		
+		* {
+		  box-sizing: border-box;
+		}
+
+		/* Create two equal columns that floats next to each other */
+		.column1 {
+		  float: left;
+		  width: 30%;
+		  padding: 40px;
+		}
+		
+		.column2 {
+		  float: left;
+		  width: 70%;
+		  padding: 40px;
+		}
+		
+
+
+		/* Clear floats after the columns */
+		.row:after {
+		  content: "";
+		  display: table;
+		  clear: both;
+		}
+		
+		h4{font-size:18px;}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+		<img align="right" src="http://www.baitic.com/wp-content/uploads/2013/05/cropped-logo_trazado1.png"/>
+		</br></br>
+		<h1>Resultados Seguridad</h1>
+		<p>Resumen del estado de seguridad de los equipos</p>
+		
+		</br></br>
+		<table id="contentTable" class="table table-hover" style="background-color:#eeeeee;">
+				<thead class="table thead-dark">					
+				  <tr>
+					<th>PC-NAME</th>
+					<th>Kaspersky</th>
+					<th>Firewall Enabled</th>
+					<th>AutoUpdate Enabled</th>
+					<th>KeePass Installed</th>
+					<th>Enforced File</th>
+				  </tr>
+				</thead>
+			
+				<tbody>
+			
+
+					<tr>
+						<td colspan="6">
+							<div ></div>
+					</tr>
+					{% for file in Ficheros %}
+					<tr>
+						<td><button data-toggle="collapse" data-target="#{{file.nameFile}}" type="button" class="btn btn-success"> {{file.computerName}} </button>
+						<br>Fecha de comprobacion: {{file.date}}
+						</td>
+						<td data-toggle="tooltip" data-placement="top" title="{{file.state}}"><i  class="material-icons" style="font-size:40px;text-shadow:1px 1px 2px #222222;">{{file.antivirusInst}}</i></td>
+						<td><i  class="material-icons" style="font-size:40px;text-shadow:1px 1px 2px #222222;">{{file.firewall}}</i></td>
+						<td><i  class="material-icons" style="font-size:40px;text-shadow:1px 1px 2px #222222;">{{file.autoupdate}}</i></td>
+						<td data-toggle="tooltip" data-placement="top" title="{{file.keepassState}}"><i  class="material-icons" style="font-size:40px;text-shadow:1px 1px 2px #222222;">{{file.keepass}}</i></td>
+						<td><i  class="material-icons" style="font-size:40px;text-shadow:1px 1px 2px #222222;">{{file.enforced}}</i></td>
+					</tr>
+					<tr>
+						<td colspan="6">
+							<div id={{file.nameFile}} class="collapse">
+								<div class="row">
+								<div class="column1">
+								  <table>
+									<tr>
+										<td><h4>OS Version:</h4></td>
+										<td>{{file.osVersion}} </td>
+									</tr>
+									<tr>
+										<td><h4>Processor:</h4></td>
+										<td>{{file.processor}} </td>
+									</tr>
+									<tr>
+										<td><h4>Office Version:</h4></td>
+										<td>{{file.office}} </td>
+									</tr>
+									<tr>
+										<td><h4>Username:</h4></td>
+										<td>{{file.username}} </td>
+									</tr>
+									<tr>
+										<td><h4>Administrator Privileges:</h4></td>
+										<td></p><i id="admin" class="material-icons">{{file.admin}}</i></p></td>
+									</tr>
+									<tr>
+										<td><h4>Guest Account Enabled:</h4></td>
+										<td><p><i id="admin" class="material-icons">{{file.guestAcc}}</i></p></td>
+									</tr>
+									<tr>
+										<td><h4>Last Update Date:</h4></td>
+										<td>{{file.lastupdate}}</td>
+									</tr>
+									
+									</table>
+								</div>
+
+
+
+								<div class="column2">
+									<table>
+										<tr>
+											<td><h4>MAC Integrada:</h4><td>
+											<td>{{file.macIntegrada}}</td>
+										</tr>
+										<tr>
+											<td><h4>MAC WLAN:</h4><td>
+											<td>{{file.macWlan}}</td>
+										</tr>
+										<tr>
+											<td><h4>Listening Ports:</h4><td>
+											<td>{{file.listPorts}}</td>
+										</tr>
+										<tr>
+											<td><h4>Shared Folders:</h4><td>
+											<td>{% autoescape off %}{{file.folders}}{% endautoescape %}</td>
+										</tr>
+									
+									</table>
+								</div>
+								</div>
+
+						    </div>
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+    </div>
+	
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script>
+    
+			var table=document.getElementById("contentTable");
+			var r=1;
+			while(row=table.rows[r++])
+			{
+				var c=1;
+				while(cell=row.cells[c++])
+				{
+					if (cell.innerText=='clear'){
+						cell.children[0].setAttribute("style","font-size:40px;text-shadow:1px 1px 2px #222222;color:#ce3737;");
+						row.cells[0].children[0].setAttribute("class", "btn btn-danger")
+						}
+					else{
+						cell.children[0].setAttribute("style","font-size:40px;text-shadow:1px 1px 2px #222222;color:#178c33;");
+					}
+						
+
+				}
+			}
+			
+		</script>
+	</body>
+</html>
